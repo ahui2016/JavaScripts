@@ -1,0 +1,2 @@
+D:/LenovoFiles/data_folder/waiting/
+D:\temp\backup-daily.toml
