@@ -60,10 +60,11 @@ public class TarXZ {
 
         Print.ln("创建压缩包: " + zipFile + "\n");
 
-        try (OutputStream fo = Files.newOutputStream(zipFile.toPath());
-             OutputStream xzo = new XZCompressorOutputStream(fo);
-             ArchiveOutputStream output = new TarArchiveOutputStream(xzo)) {
+        OutputStream fo = Files.newOutputStream(zipFile.toPath());
+        OutputStream xzo = new XZCompressorOutputStream(fo);
+        ArchiveOutputStream output = new TarArchiveOutputStream(xzo, "utf-8");
 
+        try (fo; xzo; output) {
             for (var f: files) {
                 Print.ln("塞进压缩包: " + f);
                 var entry = output.createArchiveEntry(f, f.getName());
